@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../../build"
+		},
+		{
+			"path": "../../node_modules"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../src"
+		},
+		{
+			"path": "../../public"
+		}
+	]
+}

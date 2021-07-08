@@ -29,17 +29,17 @@ app.listen(5000, () => {
 });
 
 
-app.get('/pokemon_info', async (request, response) => {
-  // console.log(request.params);
-  // const value = request.params.value;
-  // console.log(value); 
+app.get('/pokemon_info/:value', async (request, response) => {
+   console.log(request.params);
+   const value = request.params.value;
+   console.log(value); 
   //const api_url = 'http://api.giphy.com/v1/gifs/search?q=' + val + '&api_key=' + apiKey ;
   //const api_url = 'http://api.giphy.com/v1/gifs/search?q=' +value +'&api_key=$7gQiahHXIrO2CcBEcaP2RQCYAVcM8pvX';
   //const api_url = 'http://api.giphy.com/v1/gifs/search?q=haikyu&api_key=7gQiahHXIrO2CcBEcaP2RQCYAVcM8pvX';
 
-  const api_url = ' https://pokeapi.co/api/v2/pokemon/';
+  const api_url = 'https://pokeapi.co/api/v2/pokemon/';
 
-  const fetch_response = await fetch(api_url);
+  const fetch_response = await fetch(api_url+value);
   const json = await fetch_response.json();
   response.json(json);
 })

@@ -25,12 +25,14 @@ class PokemonCard extends Component{
             pokemonId: ''
         }
     }
+
+
     render(){
     return(
         <div className= "pokemonCard">
-            <p> the name of this pokemon is {this.state.pokemonName} </p>
-            <p> Its type is {this.state.pokemonType} </p>
-            <p> its id number is {this.state.pokemonId}</p>
+            <p> the name of this pokemon is {this.props.pokemon.name} </p>
+            <p> Its type is {this.props.pokemon.types[0].type.name} </p>
+            <p> its id number is {this.props.pokemon.id}</p>
             {/* <img src= {props.gif.images.downsized.url}/> */}
             <button> Like! </button>
         </div>

@@ -9,34 +9,32 @@ class SearchField extends Component{
         super();
         this.state = {
             input: '',
-            pokemons:[] ,
+            pokemon:{} ,
             found: false,
         }
     }
 
     componentDidMount(){
-        axios.get("/pokemon_info").then((response) => {
-            this.setState({pokemons: response.data});
-        });
+        // axios.get("/pokemon_info").then((response) => {
+        //     this.setState({pokemons: response.data});
+        // });
     }
 
 
-     handleFormChanges = async () => {
+     handleFormChanges = async (event) => {
+        event.preventDefault();
         let value = document.getElementById('submitId').value;
         value.toLowerCase();
 
-        axios.get('/pokemon_info'+value)
+        const response =  await axios.get('/pokemon_info/' +value) 
         console.log(response.data);
+        this.setState({pokemon: response.data, found: true})
         // .then(function(response){
-            console.log(response.data);
+           // console.log(response.data);
         }
 
         //let result = this.state.pokemons[value];
         
-
-
-
-
         // // this.setState(val}); 
         // fetch('http://api.giphy.com/v1/gifs/search?q=' + val + '&api_key=' + apiKey )
     
@@ -61,22 +59,29 @@ class SearchField extends Component{
     //     const json = await response.json();
     //     console.log(json);
 
-      }
+      //}
+
+
+    // renderPokemon(){
+    //     //move all this i guess 
+    //     //
+    // }
 
     render(){
-        let foundcards = [];
+        let foundcard ;
         if (this.state.found) {
-          foundcards = this.state.pokemon.map((i) => <PokemonCard pokemon={i}/>)
+            foundcard = <PokemonCard pokemon ={this.state.pokemon}/>
+         // foundcards = this.state.pokemons.map((i) => <PokemonCard pokemon={i}/>)
          console.log("its been found")
         } else {
-          foundcards = <h2> no found results</h2>
+          foundcard = <h2> no found results</h2>
         }
 
         return(
             <div className ="searchField" > 
             <input id= "submitId" placeholder="Search for Pokemons!" />
             <button onClick= {this.handleFormChanges}> Search </button>
-            {foundcards}
+            {foundcard}
             </div>
         );
     }
