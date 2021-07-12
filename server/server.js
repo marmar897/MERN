@@ -23,29 +23,15 @@ app.use(express.json()); //Used to parse JSON bodies
 // });
 
 
-// app.use((req, res, next) => {
-//   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
-// }); 
-
 //f your React App is using routing then it will not work 
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 
 
-// app.use((req, res, next) => {
-//   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
-// });
-
 // Require Pokemons routes
 // require('./routes/pokemon.routes')(app);
 
   app.use("/", require("./routes/pokemon.routes"));
-
-
-
-
-
-
 
 
 // start express server on port 5000
@@ -62,9 +48,6 @@ app.get('/pokemon_info/:value', async (request, response) => {
    console.log(request.params);
    const value = request.params.value;
    console.log(value); 
-  //const api_url = 'http://api.giphy.com/v1/gifs/search?q=' + val + '&api_key=' + apiKey ;
-  //const api_url = 'http://api.giphy.com/v1/gifs/search?q=' +value +'&api_key=$7gQiahHXIrO2CcBEcaP2RQCYAVcM8pvX';
-  //const api_url = 'http://api.giphy.com/v1/gifs/search?q=haikyu&api_key=7gQiahHXIrO2CcBEcaP2RQCYAVcM8pvX';
 
   const api_url = 'https://pokeapi.co/api/v2/pokemon/';
 
@@ -73,11 +56,9 @@ app.get('/pokemon_info/:value', async (request, response) => {
   response.json(json);
 })
 
-
 //establish connection to database
 mongoose.connect(
   process.env.DB_Connection,
-  // 'mongodb+srv://mariana-admin:Hotcheeto12@cluster0.lugql.mongodb.net/db_pokemon?retryWrites=true&w=majority',
   { useFindAndModify: false, useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true},
   (err) => {
       if (err) return console.log("Error: ", err);

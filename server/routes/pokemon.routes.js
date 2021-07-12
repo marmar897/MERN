@@ -3,10 +3,6 @@ const express = require("express");
 const router = express.Router();  
 const Pokemon = ("../models/pokemon.model");
 
-
-
-
-
 // create new pokemon 
 router.route('/pokemon').post((req, res) => {
     try {
