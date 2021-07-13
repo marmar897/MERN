@@ -35,31 +35,6 @@ class SearchField extends Component{
 
         //let result = this.state.pokemons[value];
         
-        // // this.setState(val}); 
-        // fetch('http://api.giphy.com/v1/gifs/search?q=' + val + '&api_key=' + apiKey )
-    
-        //   .then(response => response.json())
-        //   .then(data => {
-        //     //console.log(data)
-        //     this.setState({gifs:data.data, found: true})
-        //      console.log(this.state.gifs);
-        //     //console.log("SETSTATE DONE")
-        //   })
-    
-        //   .catch(error => {
-        //     this.setState({ found: false })
-        //     console.log("error: ")
-        //   });
-
-       //const api_url = 'gify/' + value + '&api_key=${apiKey}';
-       //const api_url = '/gify'
-    //    const api_url = 'pokemon_info/' + value;
-    //    //const api_key = '7gQiahHXIrO2CcBEcaP2RQCYAVcM8pvX';
-    //     const response = await fetch(api_url);
-    //     const json = await response.json();
-    //     console.log(json);
-
-      //}
 
 
     // renderPokemon(){

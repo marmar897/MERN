@@ -7,7 +7,8 @@ const Pokemon = ("../models/pokemon.model");
 router.route('/pokemon').post((req, res) => {
     try {
     console.log("this is a test");
-   // console.log(req);
+    console.log(req.body);
+
     const pokemonName = req.body.pokemonName;
     console.log(pokemonName);
     // const pokemonId = req.body.pokemonId,
