@@ -22,7 +22,7 @@ class PokemonCard extends Component{
            // }
         }
         console.log("creating a new pokemon", newPokemon);
-       await axios.post('http://localhost:5000/pokemon',{newPokemon})
+       await axios.post('http://localhost:5000/likes/add',{newPokemon})
        .then(function(res){
            console.log(res);
        })
