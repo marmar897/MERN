@@ -1,5 +1,6 @@
 const express = require("express");
-const router = express.Router();  
+const router = express.Router(); 
+
 //const Pokemon = ("../models/pokemon.model");
 
 router
@@ -10,6 +11,7 @@ router
     .post((req,res)=> {
         res.send("hi post /likes/add");
     });
+      
 router
     .route("/delete")
     .get((req, res)=> {
@@ -18,8 +20,6 @@ router
     .post((req,res)=> {
         res.send("hi post /likes/delete");
     });
-
-
 
 
 
