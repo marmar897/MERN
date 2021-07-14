@@ -4,23 +4,17 @@ const { response } = require("express");
 const app = express(); // create express app
 const fetch = require('node-fetch');
 const bodyParser = require("body-parser");
-const pokemonRoutes = express.Router(); 
+const likes = require("./routes/likes");
 require('dotenv/config');
 
 //import mongoose
 const mongoose = require('mongoose');
 
-let Pokemon = require('./models/pokemon.model');
-
 app.use(express.json()); //Used to parse JSON bodies
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({
-//   extended: true
-// }));
-// app.get("/", (req, res) => {
-//   res.send("This is from express.js");
-// });
+app.use("/likes" , likes);
+//used the likes.js file to handle endpints starting with likes
+//  instead of this -> app.use("/", require("./routes/pokemon.routes"));
 
 
 //f your React App is using routing then it will not work 
@@ -28,20 +22,11 @@ app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 
 
-// Require Pokemons routes
-// require('./routes/pokemon.routes')(app);
-
-  app.use("/", require("./routes/pokemon.routes"));
-
-
 // start express server on port 5000
 app.listen(5000, ()  => {
   console.log("server started on port 5000");
 });
 
-app.get('/Likes', (req,res) => {
-  res.send('We are on Likes');
-})
 
 
 app.get('/pokemon_info/:value', async (request, response) => {
