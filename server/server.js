@@ -5,10 +5,10 @@ const app = express(); // create express app
 const fetch = require('node-fetch');
 const bodyParser = require("body-parser");
 const likes = require("./routes/likes");
+const  mongoose = require('./mongoClient');
 require('dotenv/config');
 
-//import mongoose
-const mongoose = require('mongoose');
+
 
 app.use(express.json()); //Used to parse JSON bodies
 
@@ -21,12 +21,19 @@ app.use("/likes" , likes);
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 
+mongoose.connectToServer((err)=> {
+  if(err){
+    console.log(err);
+  } else {
+    console.log("db should be connnected :) ");
+  }
+})
+
 
 // start express server on port 5000
 app.listen(5000, ()  => {
   console.log("server started on port 5000");
 });
-
 
 
 app.get('/pokemon_info/:value', async (request, response) => {
@@ -41,13 +48,6 @@ app.get('/pokemon_info/:value', async (request, response) => {
   response.json(json);
 })
 
-//establish connection to database
-mongoose.connect(
-  process.env.DB_Connection,
-  { useFindAndModify: false, useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true},
-  (err) => {
-      if (err) return console.log("Error: ", err);
-      console.log("MongoDB Connection -- Ready state is:", mongoose.connection.readyState);
-  }
-);
+
+
 
