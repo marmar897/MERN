@@ -4,11 +4,14 @@ const router = express.Router();
 const mongoClient = require("../mongoClient");
 
 const DB = mongoClient.getDB();
-const Pokemon = ("../models/pokemon.model");
+const Pokemon = require("../models/pokemon.model");
 
 const likeController = require('../controllers/likes');
 const multer = require('multer');
 const upload = multer();
+
+router.use(express.json()); //Used to parse JSON bodies
+
 
 router
     .route("/add")
@@ -22,35 +25,36 @@ router
             make a call to the DB and return the id of the object.  
             */
            console.log("inside try block!");
-           console.log(req.body);
+           console.log(req.body.newPokemon.pokemonName);
+           //console.log(req);
            //const newPokemon  = req.body;
            //console.log(newPokemon);
 
-            const pokemonName = req.body.pokemonName;
-            console.log(req.body.pokemonName);
-            // const pokemonId = req.body.pokemonId;
-            // const pokemonType = req.body.pokemonType;
+            const pokemonName = req.body.newPokemon.pokemonName;
+            const pokemonId = req.body.newPokemon.pokemonId;
+            const pokemonType = req.body.newPokemon.pokemonType;
 
-            // console.log(pokemonId, pokemonName, pokemonType);
+            console.log(pokemonId, pokemonName, pokemonType);
 
-             const newPokemon = new Pokemon ({
+            const newPokemon = new Pokemon ({
                 pokemonName,
-            //     pokemonId,
-            //     pokemonType
+                pokemonId,
+                pokemonType
              });
+             console.log(newPokemon);
 
-            
-
-
-
-            newPokemon.save((err, data) => {
-                console.log("saved pokemon");
+            newPokemon.save(function (err,result){
+                console.log("inside save()");
                 if(err){
-                    console.log("there was an  error ====")
-                    return res.json({error: err});
-                }
+                    console.log("there was an  error ====");
+                    console.log(err);
+                   // return handleError(err);
+                   // return res.json({error: err});
+                } else{
                 console.log("theres no error and the newpokemon should be sent to the DB");
-                return res.json({});
+                console.log(result);
+                // return res.json({});
+                }
             });
            // console.log(newPokemon);
 
