@@ -10,23 +10,23 @@ function Likes(){
         pokemonId: ''
     }])
 
-    useEffect(() => {
-        fetch("/Likes").then(res => {
-            if(res.ok){
-                return res.json()
-            } 
-        }).then(jsonRes => setPokemons(jsonRes));
-    })
+    // useEffect(() => {
+    //     fetch("/Likes").then(res => {
+    //         if(res.ok){
+    //             return res.json()
+    //         } 
+    //     }).then(jsonRes => setPokemons(jsonRes));
+    // })
 
-    return (<div className = 'container'> 
+    return <div className = 'container'> 
     <h1> Likes page</h1>
-    {pokemons.map((pokemon) => (<div> 
+    {/* {pokemons.map((pokemon) => (<div> 
         <h1> {pokemon.pokemonName}</h1>
         <p> {pokemon.pokemonType}</p>
         <p> {pokemon.pokemonId}</p>
         </div>
-    ))}
+    ))} */}
     </div>
-    );
+    ;
 };
 export default Likes;

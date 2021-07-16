@@ -9,6 +9,7 @@ const  mongoose = require('./mongoClient');
 require('dotenv/config');
 
 app.use(express.json()); //Used to parse JSON bodies
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/likes" , likes);
 //used the likes.js file to handle endpints starting with likes

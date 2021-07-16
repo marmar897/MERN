@@ -16,29 +16,43 @@ router
     //     res.send("hi get /likes/add");
     // })
     .post((req,res)=> {
-        console.log(DB);
+        console.log("post request now");
         try {
             /* this is where i take the data from the req, and 
             make a call to the DB and return the id of the object.  
             */
+           console.log("inside try block!");
+           console.log(req.body);
+           //const newPokemon  = req.body;
+           //console.log(newPokemon);
+
             const pokemonName = req.body.pokemonName;
-            const pokemonId = req.body.pokemonId;
-            const pokemonType = req.body.pokemonType;
+            console.log(req.body.pokemonName);
+            // const pokemonId = req.body.pokemonId;
+            // const pokemonType = req.body.pokemonType;
 
-            console.log(pokemonId, pokemonName, pokemonType);
+            // console.log(pokemonId, pokemonName, pokemonType);
 
-            const newPokemon = new Pokemon ({
+             const newPokemon = new Pokemon ({
                 pokemonName,
-                pokemonId,
-                pokemonType
-            });
+            //     pokemonId,
+            //     pokemonType
+             });
+
+            
+
+
+
             newPokemon.save((err, data) => {
+                console.log("saved pokemon");
                 if(err){
+                    console.log("there was an  error ====")
                     return res.json({error: err});
                 }
+                console.log("theres no error and the newpokemon should be sent to the DB");
                 return res.json({});
             });
-            console.log(newPokemon);
+           // console.log(newPokemon);
 
         } catch (error) {
             // send an error with res. 
@@ -46,7 +60,8 @@ router
             //     status: 400,
             //     message: error.message
             // });
-            console.log(res);
+           // console.log(res);
+            console.log("this is in the catch block so something happend");
         }
         res.send("hi post /likes/add");
     });
