@@ -3,12 +3,10 @@ const express = require("express");
 const { response } = require("express");
 const app = express(); // create express app
 const fetch = require('node-fetch');
-const bodyParser = require("body-parser");
+var bodyParser = require("body-parser");
 const likes = require("./routes/likes");
 const  mongoose = require('./mongoClient');
 require('dotenv/config');
-
-
 
 app.use(express.json()); //Used to parse JSON bodies
 

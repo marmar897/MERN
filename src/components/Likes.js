@@ -11,7 +11,7 @@ function Likes(){
     }])
 
     useEffect(() => {
-        fetch("/likes").then(res => {
+        fetch("/Likes").then(res => {
             if(res.ok){
                 return res.json()
             } 
